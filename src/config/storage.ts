@@ -1,0 +1,1 @@
+export const WIDGETS_STORAGE_NAME = "WEATHER_WIDGETS";

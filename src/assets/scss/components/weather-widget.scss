@@ -1,0 +1,29 @@
+.weather-widget {
+  position: relative;
+  padding: 1.5rem;
+}
+
+.weather-widget-settings {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+}
+
+.widget-settings-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  opacity: 0;
+  transform: perspective(500px) translateZ(-200px);
+  transform-origin: center center;
+  transition: opacity .3s ease-in-out, transform .3s ease-in-out;
+  background: #fff;
+  border: 1px solid #DCDCDC;
+  padding: 1rem;
+  border-radius: 4px;
+
+  &.is-open {
+    opacity: 1;
+    transform: perspective(0) translateZ(0);
+  }
+}
