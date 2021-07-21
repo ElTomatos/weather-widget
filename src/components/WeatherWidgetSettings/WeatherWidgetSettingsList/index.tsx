@@ -2,17 +2,30 @@
  * Vendors
  */
 import React from "react";
-import { useDrop } from "react-dnd";
+import {
+  useDrag,
+  useDrop,
+  DropTargetMonitor,
+  XYCoord,
+  DndProvider,
+  useDragDropManager,
+} from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 /**
  * Components
  */
 import WeatherWidgetSettingsListItem from "../WeatherWidgetSettingsListItem";
+import { WeatherWidgetShape } from "../../../types/weather";
 
 /**
  * Typings
  */
-import { WeatherWidgetShape } from "../../../types/weather";
+type TDragItem = {
+  index: number;
+  id: string;
+  type: string;
+};
 
 type TProps = {
   widgets: WeatherWidgetShape[];

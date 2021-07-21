@@ -28,13 +28,16 @@ const WeatherWidgetSettingsListItem: React.FC<TProps> = ({
   onReorder,
   onDelete,
 }) => {
-  const [, drag, preview] = useDrag(
+  const [{ isDragging }, drag, preview] = useDrag(
     () => ({
       type: "weather-widget-item",
       item: { id: city, index },
-      collect: (monitor) => ({
-        isDragging: monitor.isDragging(),
-      }),
+      collect: (monitor) => {
+        return {
+          isDragging: monitor.isDragging(),
+          canDrag: true,
+        };
+      },
       end: (item, monitor) => {
         const { id: droppedId, index } = item;
         const didDrop = monitor.didDrop();

@@ -4,18 +4,12 @@
 import React from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { TouchBackend } from "react-dnd-touch-backend";
 
 /**
  * Components
  */
 import WeatherWidgetSettingsForm from "../WeatherWidgetSettingsForm";
 import WeatherWidgetSettingsList from "../WeatherWidgetSettingsList";
-
-/**
- * Helpers
- */
-import { isTouchDevice } from "../../../utils";
 
 /**
  * Typings
@@ -29,8 +23,6 @@ type TProps = {
   onDelete: (city: string) => void;
   onReorder: (id: string, atIndex: number) => void;
 };
-
-const dndBackend = isTouchDevice() ? TouchBackend : HTML5Backend;
 
 /**
  * Expo
@@ -49,8 +41,7 @@ const WeatherWidgetSettingsDropdown: React.FC<TProps> = ({
 
   return (
     <div className={classes}>
-      {/* @ts-ignore */}
-      <DndProvider backend={dndBackend}>
+      <DndProvider backend={HTML5Backend}>
         <WeatherWidgetSettingsList
           widgets={widgets}
           onReorder={onReorder}
