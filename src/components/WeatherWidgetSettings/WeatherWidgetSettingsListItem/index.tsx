@@ -2,19 +2,12 @@
  * Vendors
  */
 import React from "react";
-import {
-  useDrag,
-  useDrop,
-  DropTargetMonitor,
-  XYCoord,
-  DndProvider,
-} from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+import { useDrag, useDrop } from "react-dnd";
 
 /**
  * Icons
  */
-import { RiDeleteBinLine } from "react-icons/all";
+import { RiDeleteBinLine, GiHamburgerMenu } from "react-icons/all";
 
 /**
  * Typings
@@ -35,7 +28,7 @@ const WeatherWidgetSettingsListItem: React.FC<TProps> = ({
   onReorder,
   onDelete,
 }) => {
-  const [{ isDragging }, drag, preview] = useDrag(
+  const [, drag, preview] = useDrag(
     () => ({
       type: "weather-widget-item",
       item: { id: city, index },
@@ -70,19 +63,15 @@ const WeatherWidgetSettingsListItem: React.FC<TProps> = ({
     onDelete(city);
   };
 
-  const opacity = isDragging ? 0 : 1;
-
   return (
     <div key={city} ref={preview} className="widgets-settings-item">
-      <div
-        className="widget-drag-trigger"
-        ref={(node) => drag(drop(node))}
-        style={{ width: "40px", height: "40px", background: "#000" }}
-      />
-      {city}
+      <div className="widget-drag-trigger" ref={(node) => drag(drop(node))}>
+        <GiHamburgerMenu />
+      </div>
+      <span className="widget-settings-item-title">{city}</span>
       <button
         type="button"
-        className="widget-delete-btn"
+        className="widget-delete-btn btn"
         onClick={handleDelete}
       >
         <RiDeleteBinLine />

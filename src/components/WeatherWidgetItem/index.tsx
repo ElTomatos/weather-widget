@@ -7,7 +7,7 @@ import React, { useEffect, memo } from "react";
  * Components
  */
 import Loader from "../Loader";
-import WeatherWidgetItemData from "../WeatherWidgetItemData";
+import WeatherWidgetItemData from "./WeatherWidgetItemData";
 import WeatherWidgetItemError from "./WeatherWidgetItemError";
 
 /**
@@ -19,6 +19,7 @@ import { useWeatherData } from "../../hooks";
  * Typings
  */
 import { WeatherInfo } from "../../types/weather";
+
 type TProps = {
   city: string;
   data: WeatherInfo | null;

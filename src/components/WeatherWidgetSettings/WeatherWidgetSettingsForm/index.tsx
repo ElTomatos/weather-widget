@@ -9,23 +9,59 @@ import React, { useState } from "react";
 import { AiOutlineEnter } from "react-icons/all";
 
 /**
+ * Helpers
+ */
+import { capitalize } from "../../../utils";
+
+/**
  * Typings
  */
+import { WeatherWidgetShape } from "../../../types/weather";
+
 type TProps = {
   onAdd: (city: string) => void;
+  widgets: WeatherWidgetShape[];
 };
 
 /**
  * Expo
  */
-const WeatherWidgetSettingsForm: React.FC<TProps> = ({ onAdd }) => {
+const WeatherWidgetSettingsForm: React.FC<TProps> = ({ onAdd, widgets }) => {
   const [newCity, setNewCity] = useState("");
+
+  const [error, setError] = useState<string | null>(null);
+
+  const validateForm = () => {
+    if (newCity.trim().length < 2) {
+      return "Enter 2 or more characters";
+    }
+
+    if (
+      widgets.some(({ city }) => city.toLowerCase() === newCity.toLowerCase())
+    ) {
+      return `Widget with city ${capitalize(newCity)} aleady exist`;
+    }
+
+    return null;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (newCity.trim().length > 1) {
-      onAdd(newCity);
-      setNewCity("");
+
+    const error = validateForm();
+
+    if (error) {
+      setError(error);
+      return;
+    }
+
+    onAdd(newCity);
+    setNewCity("");
+  };
+
+  const handleFocus = () => {
+    if (error) {
+      setError(null);
     }
   };
 
@@ -37,19 +73,26 @@ const WeatherWidgetSettingsForm: React.FC<TProps> = ({ onAdd }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="add-city">Add Location:</label>
+    <form className="add-widget-form" onSubmit={handleSubmit}>
+      <label className="form-label" htmlFor="add-city">
+        Add Location:
+      </label>
       <div className="form-row">
         <input
           id="add-city"
           type="text"
+          className="form-control"
+          placeholder="Enter a city"
+          autoComplete="off"
           value={newCity}
           onChange={handleCityChange}
+          onFocus={handleFocus}
         />
-        <button type="submit">
+        <button className="btn add-widget-submit" type="submit">
           <AiOutlineEnter />
         </button>
       </div>
+      {error && <div className="form-error">{error}</div>}
     </form>
   );
 };

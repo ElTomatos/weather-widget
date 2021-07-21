@@ -93,3 +93,8 @@ export interface WeatherInfo {
   weather: Weather;
   lastupdate: Lastupdate;
 }
+
+export interface WeatherWidgetShape {
+  city: string;
+  data: WeatherInfo | null;
+}

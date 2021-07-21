@@ -1,6 +1,7 @@
 .weather-widget {
   position: relative;
-  padding: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .weather-widget-settings {
@@ -9,21 +10,52 @@
   top: 2rem;
 }
 
-.widget-settings-dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  opacity: 0;
-  transform: perspective(500px) translateZ(-200px);
-  transform-origin: center center;
-  transition: opacity .3s ease-in-out, transform .3s ease-in-out;
-  background: #fff;
-  border: 1px solid #DCDCDC;
+.weather-widget-item {
+  max-width: 300px;
   padding: 1rem;
-  border-radius: 4px;
+}
 
-  &.is-open {
-    opacity: 1;
-    transform: perspective(0) translateZ(0);
+
+
+.weather-widget-city {
+  text-transform: capitalize;
+  font-weight: 700;
+}
+
+.weather-widget-icon {
+  display: flex;
+  align-items: center;
+}
+
+.weather-widget-temp {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.weather-widget-description {
+  margin-bottom: 1rem;
+  font-size: .75rem;
+}
+
+.weather-widget-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.weather-widget-list-item {
+  flex: 0 0 50%;
+  display: flex;
+  align-items: center;
+  font-size: .75rem;
+  margin-bottom: .5rem;
+
+  svg {
+    width: 1.3rem;
+    height: 1.3rem;
+    margin-right: .5rem;
+  }
+
+  &:nth-child(odd) {
+    padding-right: 1rem;
   }
 }

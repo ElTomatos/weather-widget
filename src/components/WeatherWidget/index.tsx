@@ -19,7 +19,6 @@ import { useDefaultWidgets } from "../../hooks";
  * Helpers
  */
 import { reorder } from "../../utils";
-import { WeatherInfo } from "../../types/weather";
 
 /**
  * Config
@@ -29,19 +28,17 @@ import { WIDGETS_STORAGE_NAME } from "../../config/storage";
 /**
  * Typings
  */
+import { WeatherInfo, WeatherWidgetShape } from "../../types/weather";
+
 type TProps = {};
 
 /**
  * Expo
  */
 const WeatherWidget: React.FC<TProps> = () => {
-  const [widgets, setWidgets] = useState<
-    { city: string; data: WeatherInfo | null }[]
-  >([]);
+  const [widgets, setWidgets] = useState<WeatherWidgetShape[]>([]);
 
-  const syncWidgetsUpdateWithStorage = (
-    widgets: { city: string; data: WeatherInfo | null }[]
-  ) => {
+  const syncWidgetsUpdateWithStorage = (widgets: WeatherWidgetShape[]) => {
     const cities = widgets.map((widget) => widget.city);
     localStorage.setItem(WIDGETS_STORAGE_NAME, JSON.stringify(cities));
     setWidgets(widgets);

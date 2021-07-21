@@ -1,7 +1,11 @@
 // Base styles
+@import "base/variables";
 @import "base/base";
+@import "base/buttons";
 
 // Components
 @import "components/loader";
 @import "components/weather-widget";
 @import "components/weather-widget-error";
+@import "components/weather-widget-settings";
+@import "components/weather-widget-settings-form";

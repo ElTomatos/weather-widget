@@ -1,7 +1,7 @@
 /**
  * Vendors
  */
-import React, { useState, useRef, memo } from "react";
+import React, { useState, useRef, memo, useCallback } from "react";
 
 /**
  * Hooks
@@ -21,8 +21,10 @@ import { BsGear } from "react-icons/all";
 /**
  * Typings
  */
+import { WeatherWidgetShape } from "../../types/weather";
+
 type TProps = {
-  widgets: { city: string }[];
+  widgets: WeatherWidgetShape[];
   onWidgetAdd: (city: string) => void;
   onWidgetDelete: (city: string) => void;
   onWidgetsReorder: (id: string, atIndex: number) => void;
@@ -38,15 +40,18 @@ const WeatherWidgetSettings: React.FC<TProps> = memo(
       setDropdownOpenState((state) => !state);
     };
 
-    const handleOutsideClick = () => {
+    const handleOutsideClick = useCallback(() => {
       setDropdownOpenState(false);
-    };
+    }, []);
 
     useClickOutside(dropdownRef, handleOutsideClick);
 
     return (
       <div className="weather-widget-settings" ref={dropdownRef}>
-        <button onClick={toggleDropdown}>
+        <button
+          className="weather-widget-settings-btn btn"
+          onClick={toggleDropdown}
+        >
           <BsGear />
         </button>
 

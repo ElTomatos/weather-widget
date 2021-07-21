@@ -1,0 +1,70 @@
+.widget-settings-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  opacity: 0;
+  transform: perspective(500px) translateZ(-200px);
+  transform-origin: center center;
+  transition: opacity .3s ease-in-out, transform .3s ease-in-out;
+  background: #fff;
+  border: 1px solid $main-gray;
+  padding: 1rem;
+  border-radius: 4px;
+  min-width: 250px;
+  max-width: 300px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,.2);
+  z-index: -1;
+
+  &.is-open {
+    z-index: 1;
+    opacity: 1;
+    transform: perspective(0) translateZ(0);
+  }
+}
+
+.weather-widget-settings-btn {
+  padding: .5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: color .3s ease-in-out, background-color .3s ease-in-out;
+  line-height: 0;
+
+  &:hover {
+    background: #000;
+    color: #fff;
+  }
+}
+
+.widgets-settings-item {
+  display: flex;
+  align-items: center;
+  padding: .5rem 1rem;
+  background: $main-gray;
+  margin-bottom: 1rem;
+}
+
+.widget-drag-trigger {
+  margin-right: .5rem;
+  cursor: move;
+  font-size: 1.25rem;
+  line-height: 0;
+}
+
+.widget-settings-item-title {
+  text-transform: capitalize;
+}
+
+.widget-delete-btn {
+  margin-left: auto;
+  font-size: 1.25rem;
+  line-height: 0;
+  cursor: pointer;
+  transition: color .3s ease-in-out;
+
+  &:hover {
+    color: red;
+  }
+}
+
+
