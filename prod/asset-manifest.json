@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/weather-widget/weather-widget.js",
+    "main.js.map": "/weather-widget/weather-widget.js.map",
+    "index.html": "/weather-widget/index.html",
+    "static/media/barometer.ccc00683.svg": "/weather-widget/static/media/barometer.ccc00683.svg",
+    "weather-widget.js.LICENSE.txt": "/weather-widget/weather-widget.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "weather-widget.js"
+  ]
+}
